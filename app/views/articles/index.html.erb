@@ -1,0 +1,13 @@
+<h1> Все посты </h1>
+
+<% @articles.each do |article| %>
+  <div class="alert-alert-light">
+
+    <h4><%= article.title %></h4>
+    <p> <%= article.body %></p>
+    <%= link_to "Читать далее", article_path(article), class: 'btn btn-outline-primary' %>
+    <hr/>
+  </div>
+
+<% end %>
+

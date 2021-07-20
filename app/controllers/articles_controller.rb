@@ -22,7 +22,13 @@ class ArticlesController < ApplicationController
       # Когда делаем render "new" переменная не теряется.
     end
   end
+  def show
+    @article = Article.find(params[:id])
+  end
 
+  def index
+    @articles = Article.all
+  end
   private
 
   def article_params
