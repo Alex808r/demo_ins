@@ -29,6 +29,20 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.all
   end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to articles_path
+
+    # "render" не прерывает запрос текущий, а продолжает его дальше, а "redirect_to" прерывает и отравляет браузер на
+    # другую страницу. То есть "redirect_to" делает два запроса: прерывает операцию и отправляет браузер
+    # на другую страницу, и переменная теряется, а "render" происходит в рамках текущего запроса,
+    # не прерывая его,  поэтому сохраняется переменная.
+  end
+
+
+
   private
 
   def article_params
