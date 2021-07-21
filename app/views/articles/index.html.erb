@@ -5,6 +5,7 @@
 
     <h4><%= article.title %></h4>
     <p> <%= article.body %></p>
+    <strong><%# = image_tag article.image_url if article.image  %></strong>
 
     <%= link_to "Открыть пост", article_path(article), class: 'btn btn-outline-primary' %>
     <hr/>
