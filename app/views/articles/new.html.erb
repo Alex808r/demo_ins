@@ -1,33 +1,3 @@
 <h1>Новый пост</h1>
 
-<%= form_with(model: @article, local: true)  do |f| %>
-  <div>
-  <% if @article %>
-      <ul>
-    <% @article.errors.full_messages.each do |msg| %>
-      <li> <%= msg %> </li>
-    <% end %>
-      </ul>
-
-  <% end %>
-  </div>
-
-  <p>
-    <%= f.label :title, 'Заголовок' %>   <br/>
-    <%= f.text_field :title, class: 'form-control' %>
-  </p>
-
-  <p>
-    <%= f.label :body, 'Текст' %>    <br/>
-    <%= f.text_area :body, class: 'form-control' %>
-  </p>
-
-  <p>
-    <%= f.label :image, 'Фото' %>    <br/>
-    <%= f.file_field :image, class: 'form-control' %>
-  </p>
-
-  <p>
-    <%= f.submit "Сохранить", class: "btn btn-success" %>
-  </p>
-<% end %>
+<%= render 'form' %>
