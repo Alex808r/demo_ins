@@ -1,4 +1,4 @@
-<h1>New Post</h1>
+<h1>Новый пост</h1>
 
 <%= form_with(model: @article, local: true)  do |f| %>
   <div>
@@ -13,16 +13,21 @@
   </div>
 
   <p>
-    <%= f.label :title %>   <br/>
+    <%= f.label :title, 'Заголовок' %>   <br/>
     <%= f.text_field :title, class: 'form-control' %>
   </p>
 
   <p>
-    <%= f.label :body %>    <br/>
+    <%= f.label :body, 'Текст' %>    <br/>
     <%= f.text_area :body, class: 'form-control' %>
   </p>
 
   <p>
-    <%= f.submit "Save", class: "btn btn-success" %>
+    <%= f.label :image, 'Фото' %>    <br/>
+    <%= f.file_field :image, class: 'form-control' %>
+  </p>
+
+  <p>
+    <%= f.submit "Сохранить", class: "btn btn-success" %>
   </p>
 <% end %>
