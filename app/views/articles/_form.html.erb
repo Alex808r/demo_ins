@@ -8,9 +8,6 @@
 
   </div>
 
-
-
-
   <p>
     <%= f.label :title, "Заголовок" %>   <br/>
     <%= f.text_field :title, class: 'form-control', placeholder: "Заголовок"  %>
@@ -27,6 +24,12 @@
   </p>
 
   <p>
+    <%= f.label :user_id %>
+  </p>
+
+  <p>
     <%= f.submit "Сохранить", class: "btn btn-success" %>
   </p>
+
+
 <% end %>

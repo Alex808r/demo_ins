@@ -5,8 +5,18 @@ Rails.application.routes.draw do
   devise_for :users
   #root to: "home#index"
 
-  resources :articles
+    # resources :users, only: [] do
+       resources :articles
+    # end
 
-  root to: 'articles#index', as: 'home'
 
+      root to: 'articles#index', as: 'home'
+
+
+
+  # Rails.application.routes.draw do
+  #   devise_for :users, controllers: {
+  #     sessions: 'users/sessions'
+  #   }
+  # end
 end
