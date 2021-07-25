@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
   #root to: "home#index"
 
-    # resources :users, only: [] do
+  #resources :users, only: [] do
        resources :articles
-    # end
+  # end
 
 
-      root to: 'articles#index', as: 'home'
+  root to: 'articles#index', as: 'home'
 
 
 
