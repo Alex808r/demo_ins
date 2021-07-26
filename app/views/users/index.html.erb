@@ -1,0 +1,12 @@
+  <h1> Все пользователи </h1>
+  <div class="">
+    <% @users.each do |user| %>
+      <div class="alert-alert-light">
+
+        <p><%= user.username %></p>
+        <%= link_to "Открыть профиль", user_path(user), class: 'btn btn-primary' %>
+        <hr/>
+      </div>
+
+    <% end %>
+  </div>
