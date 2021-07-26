@@ -1,0 +1,22 @@
+<h1>Обновление пользователя</h1>
+
+<%= form_with(model: @user, local: true)  do |f| %>
+  <div>
+    <% if @user.errors.any? %>
+      <% @user.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"><%= msg %> </div>
+      <% end %>
+
+    <% end %>
+
+  <p>
+    <%= f.label :username, "Имя пользователя" %>   <br/>
+    <%= f.text_field :username, class: 'form-control'  %>
+  </p>
+
+    <p>
+      <%= f.submit "Сохранить", class: "btn btn-success" %>
+    </p>
+
+<% end %>
+</div>
