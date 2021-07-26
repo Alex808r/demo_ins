@@ -1,16 +1,21 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_user
+
+  def index
+    @articles = @user.articles
+  end
 
   def new
     @article = Article.new
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @article = @user.articles.find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
+    @article = @user.articles.find(params[:id])
 
     if @article.update(article_params)
       redirect_to @article # вызовет метод show и переведет пользователя на новую страницу
@@ -22,13 +27,14 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user = @user
     if @article.save
       flash[:success] = "Пост сохранен"
-      redirect_to @article  # можно записать так "redirect_to article_url(@article)" Rails из redirect_to @article
+      redirect_to user_articles_path(@user, @article)  # можно записать так "redirect_to article_url(@article)" Rails из redirect_to @article
       # автоматически делает вывод о том, что необходимо перенаправить на user_url(@user).
 
     else
-      render 'new'
+      render 'new', flash[:alert] = "Ошибка сохранения поста"
       # перезагрузка страницы если не прошла валидация можно написать render action: 'new'
       # если в методе "create" мы бы не написали render "new", то нам бы вернулось представление "create.html.erb",
       # но у нас нет такого представления и поэтому мы просто возвращаем action "new" который подтянет представление
@@ -40,17 +46,13 @@ class ArticlesController < ApplicationController
     end
   end
   def show
-    @article = Article.find(params[:id])
-  end
-
-  def index
-    @articles = Article.all
+    @article = @user.articles.find(params[:id])
   end
 
   def destroy
-    @article = Article.find(params[:id])
+    @article = @user.articles.find(params[:id])
     @article.destroy
-    redirect_to articles_path
+    redirect_to action: :index
 
     # "render" не прерывает запрос текущий, а продолжает его дальше, а "redirect_to" прерывает и отравляет браузер на
     # другую страницу. То есть "redirect_to" делает два запроса: прерывает операцию и отправляет браузер
@@ -59,11 +61,14 @@ class ArticlesController < ApplicationController
   end
 
 
-
   private
 
   def article_params
     params.require(:article).permit(:title, :body,:image)
+  end
+
+  def load_user
+    @user = User.find(params[:user_id])
   end
 
 end

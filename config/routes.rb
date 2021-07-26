@@ -6,19 +6,19 @@ Rails.application.routes.draw do
   #root to: "home#index"
 
   resources :users do
+    resources :articles
     resources :followers, only: :index
     resources :following, only: :index
   end
 
   resources :follows, only: :create
-  #resources :follows, only: :create
+
   #resources :users, only: [] do
-       resources :articles
+  #resources :articles
   #end
 
-
-  root to: 'articles#index', as: 'home'
-
+  root to: 'users#index' , as: 'home'
+  #root to:  'user_articles_path'
 
 
   # Rails.application.routes.draw do
