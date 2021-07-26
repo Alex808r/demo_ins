@@ -4,5 +4,6 @@
 <h1> E-mail: <%=@user.email %></h1>
 <hr/>
 
-<%#= link_to "Редактировать", edit_user_path(@user), class: 'btn btn-warning' %>
-<%#= link_to "Удалить", user_path(@user), method: :delete, data: {confirm:"Удалить?"}, class: 'btn btn-danger' %>
+<%= link_to "Редактировать", edit_user_path(@user), class: 'btn btn-warning' %>
+<%= link_to "Удалить", user_path(@user), method: :delete, data: {confirm:"Удалить?"}, class: 'btn btn-danger' %>
+
