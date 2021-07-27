@@ -1,14 +1,34 @@
 
-<h1> Имя: <%= @user.username %> </h1>
-<h1> Идентификатор: <%= @user.id %></h1>
-<h1> E-mail: <%=@user.email %></h1>
-<hr/>
+<h3> Имя: <%= @user.username %> </h3>
+<h3> Идентификатор: <%= @user.id %></h3>
+<h3> E-mail: <%=@user.email %></h3>
 
 <%= link_to "Редактировать", edit_user_path(@user), class: 'btn btn-warning' %>
 <%= link_to "Удалить", user_path(@user), method: :delete, data: {confirm:"Удалить?"}, class: 'btn btn-danger' %>
 
 
 <% if current_user.present? && current_user != @user %>
-<%= link_to "Follow", follows_path(following_id: @user.id), method: :post, class: 'btn btn-primary' %>
+  <%= link_to "Follow", follows_path(following_id: @user.id), method: :post, class: 'btn btn-primary' %>
 <% end %>
+
+
+<h1> Посты пользователя </h1>
+<div class="">
+  <% @user.articles.each do |article| %>
+    <div class="alert-alert-light">
+
+
+      <h4><%= article.title %></h4>
+      <p> <%= article.body %></p>
+
+      <strong><%= image_tag article.image_url if article.image  %></strong>
+
+      <%= link_to "Открыть пост", user_article_path(@user, article), class: 'btn btn-primary' %>
+      <hr/>
+    </div>
+
+  <% end %>
+</div>
+
+<hr/>
 

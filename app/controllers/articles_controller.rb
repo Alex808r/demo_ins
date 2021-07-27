@@ -3,7 +3,8 @@ class ArticlesController < ApplicationController
   before_action :load_user
 
   def index
-    @articles = @user.articles
+    #@articles = Article.all # Все посты
+    @articles = @user.articles # Посты только пользователя
   end
 
   def new
@@ -18,7 +19,7 @@ class ArticlesController < ApplicationController
     @article = @user.articles.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to @article # вызовет метод show и переведет пользователя на новую страницу
+      redirect_to user_articles_path(@user, @article) # вызовет метод show и переведет пользователя на новую страницу
     else
       render 'edit' # перезагрузка страницы если не прошла валидация
     end
@@ -30,7 +31,7 @@ class ArticlesController < ApplicationController
     @article.user = @user
     if @article.save
       flash[:success] = "Пост сохранен"
-      redirect_to user_articles_path(@user, @article)  # можно записать так "redirect_to article_url(@article)" Rails из redirect_to @article
+      redirect_to user_articles_path(@user, @article)  # ранее было записано"redirect_to article_url(@article)" Rails из redirect_to @article
       # автоматически делает вывод о том, что необходимо перенаправить на user_url(@user).
 
     else

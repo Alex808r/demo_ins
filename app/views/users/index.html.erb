@@ -3,7 +3,7 @@
     <% @users.each do |user| %>
       <div class="alert-alert-light">
 
-        <p><%= user.username %></p>
+        <h3> <%= user.username %> </h3>
         <%= link_to "Открыть профиль", user_path(user), class: 'btn btn-primary' %>
         <hr/>
       </div>
