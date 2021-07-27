@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :following, only: :index
   end
 
-  resources :follows, only: :create
+  resources :follows, only: [:create, :destroy]
 
   #resources :users, only: [] do
   #resources :articles

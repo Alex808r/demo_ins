@@ -1,14 +1,29 @@
-
 <h3> Имя: <%= @user.username %> </h3>
 <h3> Идентификатор: <%= @user.id %></h3>
 <h3> E-mail: <%=@user.email %></h3>
+
+<h3> Подпиcчики:
+     <% @user.followers.each do |follower| %>
+       <%= follower.username %>,
+     <% end %>
+</h3>
+
+<h3> Подписки:
+     <% @user.followings.each do |following| %>
+       <%= following.username %>,
+     <% end %>
+</h3>
 
 <%= link_to "Редактировать", edit_user_path(@user), class: 'btn btn-warning' %>
 <%= link_to "Удалить", user_path(@user), method: :delete, data: {confirm:"Удалить?"}, class: 'btn btn-danger' %>
 
 
 <% if current_user.present? && current_user != @user %>
+
   <%= link_to "Follow", follows_path(following_id: @user.id), method: :post, class: 'btn btn-primary' %>
+
+  <%= link_to "Unfollow", follow_path(following_id: @user.id), method: :delete, class: 'btn btn-primary' %>
+
 <% end %>
 
 

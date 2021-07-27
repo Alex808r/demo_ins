@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
       # автоматически делает вывод о том, что необходимо перенаправить на user_url(@user).
 
     else
-      render 'new', flash[:alert] = "Ошибка сохранения поста"
+      render 'new' #, flash[:success] = "Ошибка сохранения поста"
       # перезагрузка страницы если не прошла валидация можно написать render action: 'new'
       # если в методе "create" мы бы не написали render "new", то нам бы вернулось представление "create.html.erb",
       # но у нас нет такого представления и поэтому мы просто возвращаем action "new" который подтянет представление
