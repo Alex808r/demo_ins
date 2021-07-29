@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  include Pundit
+  #before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :load_user
 
@@ -13,11 +15,12 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = @user.articles.find(params[:id])
+    authorize @article
   end
 
   def update
     @article = @user.articles.find(params[:id])
-
+    authorize @article
     if @article.update(article_params)
       redirect_to user_articles_path(@user, @article) # вызовет метод show и переведет пользователя на новую страницу
     else
@@ -52,6 +55,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = @user.articles.find(params[:id])
+    authorize @article
     @article.destroy
     redirect_to action: :index
 
