@@ -8,19 +8,7 @@
 </br>
 <hr/>
 
-<p>
-<h5> Комментарии </h5>
-</p>
-<hr/>
-<% @article.comments.each do |comment| %>
-  <div class="alert-alert-light">
-      <p><strong> <%= comment.author %> </strong>
-        <%= comment.body %>
-      <%#= link_to "Удалить комментарий", [comment.post, comment], method: :delete, data: {confirm:"Удалить?"}, :class => 'btn btn-link' %>
-      </p>
-    <hr/>
-  </div>
-<% end %>
+
 
 <br/>
 <hr/>
