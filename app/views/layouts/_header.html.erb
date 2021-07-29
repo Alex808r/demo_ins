@@ -4,7 +4,8 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%= link_to "Главная страница", user_articles_path(current_user) %></li>
+          <li> <%= link_to 'Feed - Лента', feed_articles_path %></li>
+          <li>  <%#= link_to "Главная страница", user_articles_path(current_user) %></li>
           <li>  <a href=""> Hello, <%= current_user.username %>  </a> </li>
           <li>  <%= link_to 'Профиль', user_path(current_user)  %></li>
           <li>  <%= link_to "Новый пост", new_user_article_path(current_user)%></li>

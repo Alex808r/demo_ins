@@ -13,6 +13,7 @@ class FollowsController < ApplicationController
     follower_user = current_user
     following_user = User.find(params[:following_id])
     Follow.where(follower: follower_user, following: following_user).delete_all
+    #Follow.where(follower: follower_user, following: following_user).first.destroy
    # Follow.where(follower: follower_user, following: following_user).destroy_all
     redirect_to user_following_index_path(current_user)#home_path
 

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :follows, only: [:create, :destroy]
 
+  resources :feed_articles, only: [:index, :show]
+
   #resources :users, only: [] do
   #resources :articles
   #end
