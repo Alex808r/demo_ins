@@ -1,5 +1,6 @@
 class ApplicationPolicy
   attr_reader :user, :record
+  #attr_reader :updated_user
 
   def initialize(user, article)
     @user = user

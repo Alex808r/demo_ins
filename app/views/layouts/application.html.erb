@@ -16,13 +16,13 @@
 
   <div class="container">
     <% flash.each do |key, value| %>
-      <p class="alert alert-danger"><% key %> <%= value %></p>
+      <p class="alert alert-success"><% key %> <%= value %></p>
     <% end %>
   </div>
 
     <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <p class="notice"><%# для девайса = notice %></p>
+      <p class="alert"><%# для девайса = alert %></p>
       <%= yield %>
   <%= render 'layouts/footer' %>
     </div>

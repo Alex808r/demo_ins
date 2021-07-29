@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    # @user_cur = current_user
     @user = User.find(params[:id])
     @followers = Follow.select { |follower| follower.following_id == @user.id }
   end
