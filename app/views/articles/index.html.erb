@@ -4,6 +4,7 @@
     <% @articles.each do |article| %>
       <div class="alert-alert-light">
 
+    <h3><%= article.user.username %> </h3>
     <h4><%= article.title %></h4>
     <p> <%= article.body %></p>
 
@@ -14,6 +15,7 @@
     <%#= link_to "Открыть пост", feed_article_path(current_user), class: 'btn btn-primary' %>
     <hr/>
   </div>
+
 
       <% end %>
 <% else %>

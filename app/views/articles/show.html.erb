@@ -5,3 +5,39 @@
 
 <%= link_to "Редактировать", edit_user_article_path(@user, @article), class: 'btn btn-warning' %>
 <%= link_to "Удалить", user_article_path(@user, @article), method: :delete, data: {confirm:"Удалить?"}, class: 'btn btn-danger' %>
+</br>
+<hr/>
+
+<p>
+<h5> Комментарии </h5>
+</p>
+<hr/>
+<% @article.comments.each do |comment| %>
+  <div class="alert-alert-light">
+      <p><strong> <%= comment.author %> </strong>
+        <%= comment.body %>
+      <%#= link_to "Удалить комментарий", [comment.post, comment], method: :delete, data: {confirm:"Удалить?"}, :class => 'btn btn-link' %>
+      </p>
+    <hr/>
+  </div>
+<% end %>
+
+<br/>
+<hr/>
+<h5> Добавить комментарий </h5>
+
+<%= form_with model: [@article, @article.comments.build], local: true do |form| %>
+
+  <p>
+    Пользователь <br>
+    <%= form.text_field(:author, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    Текст комментария <br>
+
+    <%= form.text_area(:body, {:class=>'form-control'}) %>
+  </p>
+  <p>
+    <%= form.submit('Добавить комментарий', {:class=>'btn btn-primary'}) %>
+  </p>
+<%end %>
