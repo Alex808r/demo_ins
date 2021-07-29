@@ -34,11 +34,14 @@ class ArticlesController < ApplicationController
     @article.user = @user
     if @article.save
       flash[:success] = "Пост сохранен"
-      redirect_to user_articles_path(@user, @article)  # ранее было записано"redirect_to article_url(@article)" Rails из redirect_to @article
+
+      redirect_to user_articles_path(@user, @article)  # ранее было записано"redirect_to article_url(@article)"
+      # Rails из redirect_to @article
       # автоматически делает вывод о том, что необходимо перенаправить на user_url(@user).
 
     else
-      render 'new' #, flash[:success] = "Ошибка сохранения поста"
+      flash[:alert] = "Ошибка сохранения поста"
+      render 'new' #, flash[:alert] = "Ошибка сохранения поста"
       # перезагрузка страницы если не прошла валидация можно написать render action: 'new'
       # если в методе "create" мы бы не написали render "new", то нам бы вернулось представление "create.html.erb",
       # но у нас нет такого представления и поэтому мы просто возвращаем action "new" который подтянет представление

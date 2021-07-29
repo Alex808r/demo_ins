@@ -15,7 +15,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    #@current_user == @updated_user
+    @current_user == @updated_user
   end
 
 end

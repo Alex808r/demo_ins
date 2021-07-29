@@ -29,14 +29,14 @@
 <%= form_with model: [@article, @article.comments.build], local: true do |form| %>
 
   <p>
-    Пользователь <br>
+    Автор <br>
     <%#= current_user.username %>
-    <%= form.text_field(:author, {:class => 'form-control'}) %>
+    <%= form.text_field(:author, class: 'form-control', placeholder: "Автор") %>
   </p>
   <p>
-    Текст комментария <br>
+     Комментарий <br>
 
-    <%= form.text_area(:body, {:class=>'form-control'}) %>
+    <%= form.text_area(:body, class: 'form-control', placeholder: "Комментарий") %>
   </p>
   <p>
     <%= form.submit('Добавить комментарий', {:class=>'btn btn-primary'}) %>

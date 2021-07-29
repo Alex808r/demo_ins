@@ -10,12 +10,12 @@
 
   <p>
     <%= f.label :title, "Заголовок" %>   <br/>
-    <%= f.text_field :title, class: 'form-control', placeholder: "Заголовок"  %>
+    <%= f.text_field :title, required: :true, minlength: 2, class: 'form-control', placeholder: "Заголовок"  %>
   </p>
 
   <p>
     <%= f.label :body, 'Текст' %>    <br/>
-    <%= f.text_area :body, class: 'form-control', placeholder: "Текст" %>
+    <%= f.text_area :body, required: :true,  class: 'form-control', placeholder: "Текст" %>
   </p>
 
   <p>

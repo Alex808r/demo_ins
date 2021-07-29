@@ -32,24 +32,17 @@
   <%#= link_to "Unfollow", follow_path(following_id: @user.id), method: :delete, class: 'btn btn-primary' %>
 <%# end %>
 
-
 <h1> Посты пользователя </h1>
 <div class="">
   <% @user.articles.each do |article| %>
     <div class="alert-alert-light">
-
-
       <h4><%= article.title %></h4>
       <p> <%= article.body %></p>
-
       <strong><%= image_tag article.image_url if article.image  %></strong>
-
       <%= link_to "Открыть пост", user_article_path(@user, article), class: 'btn btn-primary' %>
       <hr/>
     </div>
-
   <% end %>
 </div>
-
 <hr/>
 
