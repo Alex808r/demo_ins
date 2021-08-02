@@ -2,13 +2,16 @@ Rails.application.routes.draw do
   #root 'application#hello'
   #get 'home/index'
 
+  resources :articles do
+    resources :likes
+  end
 
   resources :articles do
     resources :comments
   end
 
   devise_for :users
-  #root to: "home#index"
+
 
   resources :users do
     resources :articles
@@ -25,8 +28,11 @@ Rails.application.routes.draw do
   #end
 
   root to: 'users#index' , as: 'home'
-  #root to:  'user_articles_path'
 
+  #root to: 'feed_articles#index' , as: 'home'
+
+  #root to:  'user_articles_path'
+  #root to: "home#index"
 
   # Rails.application.routes.draw do
   #   devise_for :users, controllers: {

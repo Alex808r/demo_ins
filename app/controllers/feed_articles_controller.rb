@@ -11,6 +11,7 @@ class FeedArticlesController < ApplicationController
   end
 
   def show
+    #@article = @user.articles.find(params[:id])
     render 'articles/show'
   end
 

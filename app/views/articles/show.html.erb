@@ -3,10 +3,25 @@
 <strong><%= image_tag @article.image_url if @article.image  %></strong>
 <hr/>
 
-<%= link_to "Редактировать", edit_user_article_path(@user, @article), class: 'btn btn-warning' %>
-<%= link_to "Удалить", user_article_path(@user, @article), method: :delete, data: {confirm:"Удалить?"}, class: 'btn btn-danger' %>
+<%= link_to "Редактировать пост", edit_user_article_path(@user, @article), class: 'btn btn-warning' %>
+<%= link_to "Удалить пост", user_article_path(@user, @article), method: :delete, data: {confirm:"Удалить?"}, class: 'btn btn-danger' %>
+<%#= link_to "Like", article_likes_path(@article), method: :post,  class: 'btn btn-primary' %>
+
+<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
+<% if pre_like %>
+  <%= link_to 'Unlike', article_like_path(@article, pre_like), method: :delete, class: 'btn btn-primary' %>
+<% else %>
+  <%= link_to 'Like', article_likes_path(@article), method: :post, class: 'btn btn-primary' %>
+<% end %>
+
+
 </br>
+<p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+
+
+
 <hr/>
+
 
 <p>
 <h5> Комментарии </h5>
@@ -24,8 +39,8 @@
 
 <br/>
 <hr/>
-<h5> Добавить комментарий </h5>
 
+<h5> Добавить комментарий </h5>
 <%= form_with model: [@article, @article.comments.build], local: true do |form| %>
 
   <p>
@@ -35,7 +50,6 @@
   </p>
   <p>
      Комментарий <br>
-
     <%= form.text_area(:body, class: 'form-control', placeholder: "Комментарий") %>
   </p>
   <p>

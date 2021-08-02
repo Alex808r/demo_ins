@@ -40,6 +40,8 @@
       <p> <%= article.body %></p>
       <strong><%= image_tag article.image_url if article.image  %></strong>
       <%= link_to "Открыть пост", user_article_path(@user, article), class: 'btn btn-primary' %>
+
+
       <hr/>
     </div>
   <% end %>
