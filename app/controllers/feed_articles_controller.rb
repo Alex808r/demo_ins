@@ -12,7 +12,7 @@ class FeedArticlesController < ApplicationController
 
   def show
     #@article = @user.articles.find(params[:id])
-    render 'articles/show'
+    #redirect_to user_article_path(@user, @article)
   end
 
 end

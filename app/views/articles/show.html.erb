@@ -14,9 +14,8 @@
   <%= link_to 'Like', article_likes_path(@article), method: :post, class: 'btn btn-primary' %>
 <% end %>
 
-
 </br>
-<p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+<p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes' %></p>
 
 
 

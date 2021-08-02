@@ -3,27 +3,22 @@
   <% unless @articles.nil? %>
     <% @articles.each do |article| %>
       <div class="alert-alert-light">
-
-    <h3><%= article.user.username %> </h3>
-    <h4><%= article.title %></h4>
-    <p> <%= article.body %></p>
-
-    <strong><%= image_tag article.image_url if article.image  %></strong>
+        <h3><%= article.user.username %> </h3>
+        <h4><%= article.title %></h4>
+        <p> <%= article.body %></p>
+        <strong> <%= image_tag article.image_url if article.image %> </strong>
         <p><%= article.likes.count %> <%= (article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 
-    <%#= link_to "Открыть пост / маршрут не настроен", user_article_path(@user, @article) , class: 'btn btn-primary'  %>
-
-
-
-
+        <%#= link_to "Открыть пост / маршрут не настроен", {controller: "articles", action: "show"} , class: 'btn btn-primary'  %>
 
         <%#= link_to "Открыть пост", user_article_path(@user, article), class: 'btn btn-primary' %>
         <%#= link_to "Открыть пост", feed_article_path(current_user), class: 'btn btn-primary' || user_article_path(@user, @rticle) %>
+
         <%= link_to "Открыть пост / маршрут не настроен", "#", class: 'btn btn-primary'  %>
-    <hr/>
-  </div>
-      <% end %>
-<% else %>
-    <h4> Ваша лента пустая</h4>
+        <hr/>
+      </div>
+    <% end %>
+  <% else %>
+      <h4> Ваша лента пустая </h4>
 </div>
 <% end %>

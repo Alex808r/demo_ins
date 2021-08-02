@@ -14,13 +14,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
   end
 
-  def hello
+  def hello # использовалось для стартовой страницы
      render html: "Hello, this is demo Instagram"
   end
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
-  private
 
   def user_not_authorized
     flash[:warning] = "You are not authorized to perform this action."

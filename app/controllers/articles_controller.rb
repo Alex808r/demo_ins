@@ -14,35 +14,37 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = @user.articles.find(params[:id])
-    authorize @article
+    @article = @user.articles.find_by id: params[:id] # или так @article = @user.articles.find(params[:id]) # find_by
+    #ищет по одному или нескольким параметрам, в данном случае задан параметр для базы данныз "id"
+    authorize @article # подключение политики
   end
 
   def update
     @article = @user.articles.find(params[:id])
-    authorize @article
+    authorize @article # подключение политики
     if @article.update(article_params)
       redirect_to user_articles_path(@user, @article) # вызовет метод show и переведет пользователя на новую страницу
     else
-      render 'edit' # перезагрузка страницы если не прошла валидация
+      render 'edit' # перезагрузить страницу, если не прошла валидация
     end
   end
-
 
   def create
     @article = Article.new(article_params)
     @article.user = @user
     if @article.save
       flash[:success] = "Пост сохранен"
-
       redirect_to user_articles_path(@user, @article)  # ранее было записано"redirect_to article_url(@article)"
+      # Ответ от сервера 302 это и есть redirect_to
+      # redirect_to - браузеру от сервера приходит ответ переходи на другую страницу
       # Rails из redirect_to @article
+      #
       # автоматически делает вывод о том, что необходимо перенаправить на user_url(@user).
-
     else
       flash[:alert] = "Ошибка сохранения поста"
-      render 'new' #, flash[:alert] = "Ошибка сохранения поста"
-      # перезагрузка страницы если не прошла валидация можно написать render action: 'new'
+      render 'new' # - это значит нужно отрендерить еще раз представление "new.html.erb"
+
+      # это произойдет если не прошла валидация. можно также написать render action: 'new'
       # если в методе "create" мы бы не написали render "new", то нам бы вернулось представление "create.html.erb",
       # но у нас нет такого представления и поэтому мы просто возвращаем action "new" который подтянет представление
       # "new.html.erb"
@@ -52,8 +54,13 @@ class ArticlesController < ApplicationController
       # Когда делаем render "new" переменная не теряется.
     end
   end
+
   def show
     @article = @user.articles.find(params[:id])
+    # получаю ошибку на этот метод когда оставляю комменты или лайки другому пользователю
+    # если оставляю себе, ошибки нет
+    # ActiveRecord::RecordNotFound in ArticlesController#show
+    # Couldn't find Article with 'id'=11 [WHERE "articles"."user_id" = ?]
   end
 
   def destroy
@@ -61,7 +68,6 @@ class ArticlesController < ApplicationController
     authorize @article
     @article.destroy
     redirect_to action: :index
-
     # "render" не прерывает запрос текущий, а продолжает его дальше, а "redirect_to" прерывает и отравляет браузер на
     # другую страницу. То есть "redirect_to" делает два запроса: прерывает операцию и отправляет браузер
     # на другую страницу, и переменная теряется, а "render" происходит в рамках текущего запроса,
