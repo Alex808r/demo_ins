@@ -16,6 +16,13 @@
 
 </br>
 <p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes' %></p>
+
+<!-- Чтобы отобразить тех, кто поставил лайки, можно использовать такую конструкцию -->
+<p> Пост понравился:
+<% @article.likes.each do |art| %>
+   <%= art.user.username %>,
+  <% end %>
+</p>
 <hr/>
 
 <p>
