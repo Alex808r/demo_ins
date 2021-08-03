@@ -1,4 +1,6 @@
 <h1> Feed - Лента  </h1>
+<h1 class="mb-4">Questions</h1>
+
 <div class="">
   <% unless @articles.nil? %>
     <% @articles.each do |article| %>
@@ -8,13 +10,8 @@
         <p> <%= article.body %></p>
         <strong> <%= image_tag article.image_url if article.image %> </strong>
         <p><%= article.likes.count %> <%= (article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-
         <%#= link_to "Открыть пост / маршрут не настроен", "#" , class: 'btn btn-primary'  %>
-
         <%= link_to "Открыть пост", user_article_path(article.user_id, article ), class: 'btn btn-primary' %>
-        <%#= link_to "Открыть пост", feed_article_path(current_user), class: 'btn btn-primary' || user_article_path(@user, @rticle) %>
-
-        <%#= link_to "Открыть пост / маршрут не настроен", "#", class: 'btn btn-primary'  %>
         <hr/>
       </div>
     <% end %>

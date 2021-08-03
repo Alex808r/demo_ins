@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
   include Pundit
-  #before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :load_user
 
@@ -43,7 +42,6 @@ class ArticlesController < ApplicationController
     else
       flash[:alert] = "Ошибка сохранения поста"
       render 'new' # - это значит нужно отрендерить еще раз представление "new.html.erb"
-
       # это произойдет если не прошла валидация. можно также написать render action: 'new'
       # если в методе "create" мы бы не написали render "new", то нам бы вернулось представление "create.html.erb",
       # но у нас нет такого представления и поэтому мы просто возвращаем action "new" который подтянет представление
@@ -84,5 +82,4 @@ class ArticlesController < ApplicationController
   def load_user
     @user = User.find(params[:user_id])
   end
-
 end

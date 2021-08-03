@@ -1,6 +1,7 @@
 class LikesController < ApplicationController
   before_action :find_article
   before_action :find_like, only: [:destroy]
+
   # def create
   #   @article.likes.create(user_id:current_user.id)
   #   redirect_to user_article_path(current_user, @article)
