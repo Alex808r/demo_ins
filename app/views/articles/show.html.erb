@@ -16,14 +16,10 @@
 
 </br>
 <p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes' %></p>
-
-
-
 <hr/>
 
-
 <p>
-<h5> Комментарии </h5>
+<h5> Комментарии: </h5>
 </p>
 <hr/>
 <% @article.comments.each do |comment| %>
@@ -41,14 +37,13 @@
 
 <h5> Добавить комментарий </h5>
 <%= form_with model: [@article, @article.comments.build], local: true do |form| %>
-
   <p>
     Автор <br>
     <%#= current_user.username %>
     <%= form.text_field(:author, class: 'form-control', placeholder: "Автор") %>
   </p>
   <p>
-     Комментарий <br>
+    Комментарий <br>
     <%= form.text_area(:body, class: 'form-control', placeholder: "Комментарий") %>
   </p>
   <p>

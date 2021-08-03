@@ -13,7 +13,7 @@ class LikesController < ApplicationController
       @article.likes.create(user_id: current_user.id)
     end
       #render plain: params
-        redirect_to user_article_path(current_user, @article)
+        redirect_to user_article_path(@article.user_id, @article)
       #redirect_to article_path(@article)
   end
 
@@ -24,7 +24,7 @@ class LikesController < ApplicationController
       @like.destroy
     end
       #render plain: params
-      redirect_to user_article_path(current_user, @article)
+      redirect_to user_article_path(@article.user_id, @article)
       #redirect_to article_path(@article)
   end
 

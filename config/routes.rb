@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :follows, only: [:create, :destroy] # или так "resources :follows, only: %i[create, destroy]"
 
-  resources :feed_articles, only: [:index, :show]
+  resources :feed_articles, only: :index
 
   root to: 'users#index' , as: 'home'
 

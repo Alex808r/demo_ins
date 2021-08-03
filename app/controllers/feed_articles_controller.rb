@@ -9,10 +9,4 @@ class FeedArticlesController < ApplicationController
     end
       render 'articles/index'
   end
-
-  def show
-    #@article = @user.articles.find(params[:id])
-    #redirect_to user_article_path(@user, @article)
-  end
-
 end
