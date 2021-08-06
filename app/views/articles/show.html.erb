@@ -1,3 +1,4 @@
+<h1 class="mb-4">      <%= @article.user.username %> </h1>
 <h1 class="mb-4">      <%= @article.title %> </h1>
 <p class="lead my-3">  <%= @article.body %>  </p>
 <strong> <%= image_tag @article.image_url if @article.image  %></strong>
@@ -32,14 +33,13 @@
 <hr/>
 <% @article.comments.each do |comment| %>
   <div class="alert-alert-light">
-    <p><strong> <%= comment.author %> </strong>
+     <p><strong> <%= comment.author %> </strong>
       <%= comment.body %>
       <%#= link_to "Удалить комментарий", [comment.article, comment], method: :delete, data: {confirm:"Удалить?"}, :class => 'btn btn-link' %>
     </p>
     <hr/>
   </div>
 <% end %>
-
 <br/>
 <hr/>
 
@@ -57,4 +57,4 @@
   <p>
     <%= form.submit('Добавить комментарий', {:class=>'btn btn-primary'}) %>
   </p>
-<%end %>
+<% end %>
