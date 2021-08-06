@@ -12,8 +12,10 @@ class CommentsController < ApplicationController
 
 
   private
-  # метод в том числе принимает user_id который нужен для отображения имени пользователя оставивщего комментарий
-  # оговорка о том, что возомжно это неверно в articles show
+  # метод в том числе принимает user_id, который нужен для отображения имени пользователя оставивщего комментарий.
+  # оговорка о том, что возомжно это неверно в articles show. user_id берем из current_user.id
+  # user_id передаем в форме создания комментария через: form.hidden_field :user_id, value: current_user.id
+
   def comment_params
     params.require(:comment).permit(:author, :body, :user_id)
   end
