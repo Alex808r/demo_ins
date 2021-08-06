@@ -1,7 +1,16 @@
-<h1> <%= @article.title %></h1>
-<p>  <%= @article.body %> </p>
-<strong><%= image_tag @article.image_url if @article.image  %></strong>
+<h1 class="mb-4">      <%= @article.title %> </h1>
+<p class="lead my-3">  <%= @article.body %>  </p>
+<strong> <%= image_tag @article.image_url if @article.image  %></strong>
 <hr/>
+
+<p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes' %></p>
+
+<!-- Чтобы отобразить тех, кто поставил лайки, можно использовать такую конструкцию -->
+<p > Пост понравился:
+  <% @article.likes.each do |art| %>
+    <%= art.user.username %>,
+  <% end %>
+</p>
 
 <%= link_to "Редактировать пост", edit_user_article_path(@user, @article), class: 'btn btn-warning' %>
 <%= link_to "Удалить пост", user_article_path(@user, @article), method: :delete, data: {confirm:"Удалить?"}, class: 'btn btn-danger' %>
@@ -14,15 +23,7 @@
   <%= link_to 'Like', article_likes_path(@article), method: :post, class: 'btn btn-primary' %>
 <% end %>
 
-</br>
-<p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes' %></p>
 
-<!-- Чтобы отобразить тех, кто поставил лайки, можно использовать такую конструкцию -->
-<p> Пост понравился:
-<% @article.likes.each do |art| %>
-   <%= art.user.username %>,
-  <% end %>
-</p>
 <hr/>
 
 <p>

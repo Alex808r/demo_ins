@@ -33,6 +33,7 @@ class LikesController < ApplicationController
     @like = @article.likes.find(params[:id])
   end
 
+
   private
   def find_article
     @article = Article.find(params[:article_id])
@@ -41,4 +42,5 @@ class LikesController < ApplicationController
   def already_liked?
     Like.where(user_id: current_user.id, article_id: params[:article_id]).exists?
   end
+
 end

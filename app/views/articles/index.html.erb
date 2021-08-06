@@ -1,21 +1,22 @@
-<h1> Feed - Лента  </h1>
-<h1 class="mb-4">Questions</h1>
-
-<div class="">
+<h1 class="mb-4"> Feed - Лента </h1>
   <% unless @articles.nil? %>
     <% @articles.each do |article| %>
-      <div class="alert-alert-light">
-        <h3><%= article.user.username %> </h3>
-        <h4><%= article.title %></h4>
-        <p> <%= article.body %></p>
-        <strong> <%= image_tag article.image_url if article.image %> </strong>
-        <p><%= article.likes.count %> <%= (article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-        <%#= link_to "Открыть пост / маршрут не настроен", "#" , class: 'btn btn-primary'  %>
-        <%= link_to "Открыть пост", user_article_path(article.user_id, article ), class: 'btn btn-primary' %>
-        <hr/>
-      </div>
+      <article class="card mt-3">
+        <div class="card-body">
+          <section class="card-text">
+            <h3><%= article.user.username %> </h3>
+            <h4><%= article.title %></h4>
+            <p class="my-2"> <%= article.body %></p>
+            <strong> <%= image_tag article.image_url if article.image %> </strong>
+            <p><%= article.likes.count %> <%= (article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+            <%#= link_to "Открыть пост / маршрут не настроен", "#" , class: 'btn btn-primary'  %>
+            <%= link_to "Открыть пост", user_article_path(article.user_id, article ), class: 'btn btn-primary' %>
+            <hr/>
+
     <% end %>
   <% else %>
       <h4> Ваша лента пустая </h4>
-</div>
+  </section>
+  </div>
+  </article>
 <% end %>

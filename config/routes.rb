@@ -24,7 +24,8 @@ Rails.application.routes.draw do
 
   root to: 'users#index' , as: 'home'
 
-  #root to: 'feed_articles#index' , as: 'home'
+
+    #root to: 'feed_articles#index' , as: 'home'
   #root to:  'user_articles_path'
   #root to: "home#index"
 
