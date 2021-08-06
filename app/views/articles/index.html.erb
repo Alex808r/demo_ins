@@ -12,11 +12,10 @@
             <%#= link_to "Открыть пост / маршрут не настроен", "#" , class: 'btn btn-primary'  %>
             <%= link_to "Открыть пост", user_article_path(article.user_id, article ), class: 'btn btn-primary' %>
             <hr/>
-
     <% end %>
   <% else %>
-      <h4> Ваша лента пустая </h4>
-  </section>
-  </div>
+            <h4> Ваша лента пустая </h4>
+            </section>
+        </div>
   </article>
 <% end %>

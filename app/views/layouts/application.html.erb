@@ -15,11 +15,23 @@
   <body>
   <%= render 'layouts/header' %>
 
-  <div class="container">
+<!--
+  <main class="container mt-3">
+    <#% flash.each do |key, value| %>
+      <div class="alert alert-<#%= key %>" >
+        <#%= value %>
+      </div>
+    <#% end %>
+  </main>
+  лучше записать так:
+  -->
+  <main class="container mt-3">
     <% flash.each do |key, value| %>
-      <p class="alert alert-success"><% key %> <%= value %></p>
+    <%= tag.div value, class: "alert alert-#{key}", role: 'alert' %>
+    </div>
     <% end %>
-  </div>
+  </main>
+
 
     <div class="container">
       <p class="notice"><%# для девайса = notice %></p>

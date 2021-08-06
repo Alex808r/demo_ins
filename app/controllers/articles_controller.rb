@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
       #
       # автоматически делает вывод о том, что необходимо перенаправить на user_url(@user).
     else
-      flash[:alert] = "Ошибка сохранения поста"
+      flash[:danger] = "Ошибка сохранения поста"
       render 'new' # - это значит нужно отрендерить еще раз представление "new.html.erb"
       # это произойдет если не прошла валидация. можно также написать render action: 'new'
       # если в методе "create" мы бы не написали render "new", то нам бы вернулось представление "create.html.erb",

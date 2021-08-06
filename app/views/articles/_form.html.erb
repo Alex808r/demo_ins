@@ -2,18 +2,17 @@
 Используется для подключения нужной нам разметки в разных представлениях. В данном случае эта форма для создания и
  редактирования поста подкючена в предствалених new и edit путем указания render 'form' -->
 
-<%= form_with(model: [@user, @article], local: true)  do |f| %>
-  <!-- Перехватываем ошибки при сохранении поста, и выводим из списком методом each -->
-  <div>
-    <% if @article.errors.any? %>
-      <% @article.errors.full_messages.each do |msg| %>
-        <div class="alert alert-danger"><%= msg %> </div>
-      <% end %>
+<!-- Перехватываем ошибки при сохранении поста, и выводим из списком методом each -->
+<div>
+  <% if @article.errors.any? %>
+    <% @article.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %> </div>
     <% end %>
-  </div>
+  <% end %>
+</div>
 
-  <p>
-
+<%= form_with(model: [@user, @article], local: true)  do |f| %>
+   <p>
     <%= f.label :title, "Заголовок" %>   <br/>
     <!--required: :true, minlength: 2, placeholder: "Заголовок"  - эта атрибуты, которые сгенерируют нужные нам теги HTML.
      required: :true - поле должно быть заполнено, minlength: 2 - длина не менее 2 символов. Это валидация на уровне

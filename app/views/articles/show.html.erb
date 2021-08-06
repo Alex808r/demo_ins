@@ -4,6 +4,7 @@
 <strong> <%= image_tag @article.image_url if @article.image  %></strong>
 <hr/>
 
+
 <p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes' %></p>
 
 <!-- Чтобы отобразить тех, кто поставил лайки, можно использовать такую конструкцию -->
@@ -43,16 +44,20 @@
 <br/>
 <hr/>
 
+
 <h5> Добавить комментарий </h5>
+
+
 <%= form_with model: [@article, @article.comments.build], local: true do |form| %>
+
   <p>
     Автор <br>
     <%#= current_user.username %>
-    <%= form.text_field(:author, class: 'form-control', placeholder: "Автор") %>
+    <%= form.text_field(:author, required: :true, minlength: 2, class: 'form-control', placeholder: "Автор") %>
   </p>
   <p>
     Комментарий <br>
-    <%= form.text_area(:body, class: 'form-control', placeholder: "Комментарий") %>
+    <%= form.text_area(:body, required: :true, minlength: 1, class: 'form-control', placeholder: "Комментарий") %>
   </p>
   <p>
     <%= form.submit('Добавить комментарий', {:class=>'btn btn-primary'}) %>
