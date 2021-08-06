@@ -33,6 +33,14 @@
 <hr/>
 <% @article.comments.each do |comment| %>
   <div class="alert-alert-light">
+    <!--
+    сделаем проверку есть ли у нас user_id в таблице comments и если есть, то выведем имя юзера
+    если нет, то не выведем избежав ошибки. Без этой проверки можем получить ошибку при отсутсвии поля user_id
+    -->
+    <% unless comment.user_id.nil? %>
+    <%= User.find(comment.user_id).username  %>
+    <% end %>
+    <%#= comment.user_id %>
      <p><strong> <%= comment.author %> </strong>
       <%= comment.body %>
       <%#= link_to "Удалить комментарий", [comment.article, comment], method: :delete, data: {confirm:"Удалить?"}, :class => 'btn btn-link' %>
@@ -48,13 +56,23 @@
   <p>
     Автор <br>
     <%#= current_user.username %>
-    <%= form.text_field(:author, class: 'form-control', placeholder: "Автор") %>
+    <%= form.text_field(:author, class: 'form-control', placeholder: "Автор / поле можно убрать") %>
   </p>
   <p>
+
     Комментарий <br>
     <%= form.text_area(:body, class: 'form-control', placeholder: "Комментарий") %>
   </p>
   <p>
     <%= form.submit('Добавить комментарий', {:class=>'btn btn-primary'}) %>
   </p>
+      <!--
+      нужно для того, чтобы вместе с формой создания комментария передать id текущего пользователя,
+      который потом используется для отображения имени пользователя, оставившего комментарий User.find(comment.user_id).username
+      строка 36 настоящего представления.
+      Возможно, такой подход неправильный, так как модели user и comment не связаны на уровне базы данных отношениями
+      has many и belongs to
+      -->
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
 <% end %>
