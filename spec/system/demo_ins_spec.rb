@@ -32,8 +32,9 @@ RSpec.describe "DemoIns", type: :system do
       expect(page).to have_content('Feed - Лента')
     end
 
+    it "should create article" do
+
+    end
   end
-
-
 
 end
