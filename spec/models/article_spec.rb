@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-require 'rails_helper'
-  RSpec.describe Article, type: :model do
-
-
-  end
-=======
 require 'rails_helper'
 
 RSpec.describe Article, type: :model do
@@ -29,4 +22,4 @@ RSpec.describe Article, type: :model do
   end
 
 end
->>>>>>> Add-tests
+
