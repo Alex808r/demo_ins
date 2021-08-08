@@ -27,9 +27,14 @@
   -->
   <main class="container mt-3">
     <% flash.each do |key, value| %>
-    <%= tag.div value, class: "alert alert-#{key}", role: 'alert' %>
+      <%#if key == "notice"   %>
+    <div>
+        <%= tag.div value, class: "alert alert-#{key}", role: 'alert' %>
+      <%# else %>
+        <%#= tag.div value, class: "alert alert-info", role: 'alert' %>
     </div>
-    <% end %>
+      <% end %>
+    <%# end %>
   </main>
 
 

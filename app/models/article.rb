@@ -3,7 +3,7 @@ class Article < ApplicationRecord
 
   validates :title, presence: true, length: {minimum: 2} # валидация наличия и длины
   validates :body,  presence: true, length: {minimum: 2, maximum: 100} # валидация наличия и длины
-  validates :image_data, presence: true
+  validates :image, presence: true
 
 
   belongs_to :user

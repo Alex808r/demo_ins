@@ -13,9 +13,9 @@ class LikesController < ApplicationController
     else
       @article.likes.create(user_id: current_user.id)
     end
-      #render plain: params
+      # render plain: params
       redirect_to user_article_path(@article.user_id, @article)
-      #redirect_to user_article_path(current_user, @article) # выдавало ошибку на метод show article controller
+      #redirect_to user_article_path(current_user, @article)  выдавало ошибку на метод show article controller
   end
 
   def destroy
