@@ -4,7 +4,7 @@ RSpec.describe Comment, type: :model do
 
   let(:comment){build(:comment)}
 
-  it "comment should be valid" do
+  it "should be valid" do
     #expect(comment.valid?).to eq(true) аналогичная запись
     expect(comment).to be_valid
   end

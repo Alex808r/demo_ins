@@ -2,8 +2,8 @@ class Article < ApplicationRecord
   include ImageUploader::Attachment(:image) # подлючаем загрузку изображений
 
   validates :title, presence: true, length: {minimum: 2} # валидация наличия и длины
-  validates :body,  presence: true, length: {minimum: 2} # валидация наличия и длины
-  #validates :image_data, presence: true
+  validates :body,  presence: true, length: {minimum: 2, maximum: 100} # валидация наличия и длины
+  validates :image_data, presence: true
 
 
   belongs_to :user
