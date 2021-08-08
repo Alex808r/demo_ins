@@ -18,13 +18,13 @@ demo_ins
 Визуальное оформление bootstrap 4.6.0.
 
 
-Для тестирования приложения испольуется:
+Для тестирования приложения используется:
 gem rspec-rails,
 gem factory_bot_rails
 gem database_cleaner-active_record
 gem shoulda-matchers
 
-Отображение структуры модели 
+Отображение структуры модели в тестах: 
 gem annotate
 
 

@@ -16,13 +16,19 @@ FactoryBot.define do
     sequence(:title){ |n| "Title #{n}" }
     sequence(:body) { |n| "Body #{n}"  }
     association(:user)
-    image {Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/pixel.png'),'image/jpeg')}
+    image {Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/test_file.png'),'image/jpeg')}
+
+
+    trait(:with_invalid_image) do
+      image { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/test_file.txt')) }
+    end
 
     # Эти варианты не сработали
-    #image_data { fixture_file_upload 'spec/fixtures/pixel.png' }
-    # trait :with_image do
-    #   image { fixture_file_upload(Rails.root.join('spec/fixtures/pixel.png')) }
+    #image_data { fixture_file_upload 'spec/fixtures/test_file.png' }
+    # trait :image do
+    #   image { fixture_file_upload(Rails.root.join('spec/fixtures/test_file.png')) }
     # end
   end
+
 
 end

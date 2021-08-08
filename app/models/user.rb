@@ -35,7 +35,7 @@ class User < ApplicationRecord
   has_many :followings, through: :following_follows, source: :following
 
   # Пример валидации email из Ruby on Rails Tutorial
-  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  # validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX },  uniqueness: { case_sensitive: false }
+  #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  #validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX },  uniqueness: { case_sensitive: false }
   # валидация наличия емайл и его длины не более 255 и соответстия требованиям емайла и              уникальности   чувствительности к регистру
 end

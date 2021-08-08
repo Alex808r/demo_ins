@@ -63,7 +63,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include Warden::Test::Helpers
-
+    # config.include Devise::Test::IntegrationHelpers, type: :request
 end
 
 Shoulda::Matchers.configure do |config|
@@ -80,4 +80,8 @@ end
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+end
+
+RSpec.configure do |config|
+  config.include Devise::TestHelpers, :type => :controller
 end

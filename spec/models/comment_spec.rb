@@ -24,6 +24,7 @@ RSpec.describe Comment, type: :model do
 
   let(:comment){build(:comment)}
 
+  #тест проверяет валидна ли фабрика
   it "should be valid" do
     #expect(comment.valid?).to eq(true) аналогичная запись
     expect(comment).to be_valid
@@ -39,5 +40,6 @@ RSpec.describe Comment, type: :model do
   describe  "associations" do
     it { should belong_to(:article) }
   end
+
 
 end

@@ -13,8 +13,10 @@
 require 'rails_helper'
 
 RSpec.describe Article, type: :model do
+
   let(:article){build(:article)}
 
+  #тест проверяет валидна ли фабрика
   it "should be valid" do
     #expect(article.valid?).to eq(true) аналогичная запись
     expect(article).to be_valid
@@ -38,5 +40,21 @@ RSpec.describe Article, type: :model do
     it { should have_many(:likes)    }
   end
 
+
+  describe 'validates image format' do
+    it 'allows to set PNG file as an image' do
+      user = create(:user)
+      subject.attributes = attributes_for(:article)
+      subject.user = user
+      is_expected.to be_valid
+    end
+
+    it 'does not allow to set TXT file as an image' do
+      user = create(:user)
+      subject.attributes = attributes_for(:article, :with_invalid_image)
+      subject.user = user
+      is_expected.to be_invalid
+    end
+  end
 end
 
