@@ -64,6 +64,9 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    annotate (3.1.1)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
     ansi (1.5.0)
     autoprefixer-rails (10.2.5.1)
       execjs (> 0)
@@ -323,6 +326,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations (= 0.8.9)
+  annotate
   aws-sdk-s3 (= 1.87.0)
   bcrypt (= 3.1.13)
   bootsnap (= 1.7.2)

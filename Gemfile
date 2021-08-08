@@ -97,6 +97,8 @@ group :development do
   gem 'rack-mini-profiler', '2.3.1'
   gem 'listen',             '3.4.1'
   gem 'spring',             '2.1.1'
+
+  gem 'annotate'
 end
 
 group :test do
