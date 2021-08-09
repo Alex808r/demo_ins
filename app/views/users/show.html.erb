@@ -4,13 +4,16 @@
 
 <h3> Подпиcчики:
      <% @user.followers.each do |follower| %>
-       <%= follower.username %>,
-     <% end %>
+       <%#= follower.username %>
+    <%= link_to(follower.username, user_path(follower)) %>,
+<% end %>
 </h3>
 
 <h3> Подписки:
      <% @user.followings.each do |following| %>
-       <%= following.username %>,
+       <%#= following.username %>
+    <%= link_to(following.username, user_path(following)) %>,
+
      <% end %>
 </h3>
 
