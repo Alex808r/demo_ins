@@ -29,14 +29,14 @@
   <!-- Флеш сообщения от девайса не подхватывают цвет -->
   <main class="container mt-3">
     <% flash.each do |key, value| %>
-      <%#if key == "notice"   %>
+      <%if key == "notice" || key == "alert"  %>
     <div>
+        <%= tag.div value, class: "alert alert-info", role: 'alert' %>
+      <% else %>
         <%= tag.div value, class: "alert alert-#{key}", role: 'alert' %>
-      <%# else %>
-        <%#= tag.div value, class: "alert alert-info", role: 'alert' %>
     </div>
       <% end %>
-    <%# end %>
+    <% end %>
   </main>
 
 

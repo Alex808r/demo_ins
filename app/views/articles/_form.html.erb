@@ -14,15 +14,16 @@
 <%= form_with(model: [@user, @article], local: true)  do |f| %>
    <p>
     <%= f.label :title, "Заголовок" %>   <br/>
-    <!--required: :true, minlength: 2, placeholder: "Заголовок"  - эта атрибуты, которые сгенерируют нужные нам теги HTML.
+         <!--required: :true, minlength: 2, placeholder: "Заголовок"  - эта атрибуты, которые сгенерируют нужные нам теги HTML.
      required: :true - поле должно быть заполнено, minlength: 2 - длина не менее 2 символов. Это валидация на уровне
      браузера, а валидация на уровне модели(на уровне базы данных) прописывается в файле модели article.rb -->
-    <%= f.text_field :title, required: :true, minlength: 2, placeholder: "Заголовок", class: 'form-control' %>
-  </p>
+    <%= f.text_field :title, required: :true, minlength: 2, placeholder: "Заголовок от 2 до 10 символов", class: 'form-control' %>
+
+   </p>
 
   <p>
     <%= f.label :body, 'Текст' %>    <br/>
-    <%= f.text_area :body, required: :true, placeholder: "Текст", class: 'form-control' %>
+    <%= f.text_area :body, required: :true, placeholder: "Текст от 2 до 100 символов", class: 'form-control' %>
   </p>
 
   <p>
@@ -37,5 +38,6 @@
   <p>
     <%= f.submit "Сохранить", class: "btn btn-success" %>
   </p>
+
 
 <% end %>
