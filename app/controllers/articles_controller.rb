@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
   include Pundit              # Подключаем политику
   before_action :authenticate_user!  # Необходима регистрация
   before_action :load_user           # Загружаем юзера так как у нас вложенные маршурты и связанные модели
+  before_action :set_article, only: %i[show destroy edit update] # вынесли общий код в метод и определили загрузку
+                                                                  # метода для нужных action
 
   def index
     #@articles = Article.all   # Все посты
@@ -13,13 +15,13 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = @user.articles.find_by id: params[:id] # или так @article = @user.articles.find(params[:id])
+    #@article = @user.articles.find_by id: params[:id] # или так @article = @user.articles.find(params[:id]) вынесли в метод set_article
     # find_by ищет по одному или нескольким параметрам, в данном случае задан один параметр для базы данныз "id"
     authorize @article # политика
   end
 
   def update
-    @article = @user.articles.find(params[:id])
+    #@article = @user.articles.find(params[:id]) вынесли в метод set_article
     authorize @article # подключение политики
     if @article.update(article_params)
       redirect_to user_articles_path(@user, @article) # вызовет метод show и переведет пользователя на новую страницу
@@ -52,7 +54,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = @user.articles.find(params[:id]) # Работчий код
+    #@article = @user.articles.find(params[:id]) # Работчий код вынесли в метод set_article
     # ранее получал ошибку на этот метод когда оставляю комменты или лайки другому пользователю
     # если оставлял себе, ошибки не возникало. Проблема была в маршрутах.
     # ActiveRecord::RecordNotFound in ArticlesController#show
@@ -60,7 +62,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = @user.articles.find(params[:id])
+    #@article = @user.articles.find(params[:id]) вынесли в метод set_article
     authorize @article
     @article.destroy
     redirect_to action: :index
@@ -79,5 +81,9 @@ class ArticlesController < ApplicationController
 
   def load_user
     @user = User.find(params[:user_id])
+  end
+
+  def set_article
+    @article = @user.articles.find(params[:id])
   end
 end
