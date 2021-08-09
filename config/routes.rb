@@ -3,10 +3,7 @@ Rails.application.routes.draw do
   #get 'home/index'
 
   resources :articles do
-    resources :likes
-  end
-
-  resources :articles do
+    resources :likes, only: [:create, :destroy]
     resources :comments
   end
 
