@@ -8,7 +8,7 @@
        <!--   <li>  <a href=""> Hello, <%#= current_user.username %>  </a> </li> -->
           <li> <%= link_to 'Feed - Лента', feed_articles_path %></li>
 
-          <li>  <%#= link_to "Главная страница", user_articles_path(current_user) %></li>
+          <li>  <%= link_to "Мои посты", user_articles_path(current_user) %></li>
           <li>  <%#= link_to 'Профиль', user_path(current_user)  %></li>
           <li>  <%= link_to 'Новый пост', new_user_article_path(current_user)%></li>
           <li> <%= link_to 'Список пользователей', users_path %></li>
