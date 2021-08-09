@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @followers = Follow.select { |follower| follower.following_id == @user.id }
+    @followers = Follow.where { |follower| follower.following_id == @user.id }
   end
 
   def index
