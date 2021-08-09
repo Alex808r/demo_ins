@@ -1,4 +1,5 @@
-<h1 class="mb-4">      <%= @article.user.username %> </h1>
+<h1 class="mb-4">      <%#= @article.user.username %> </h1>
+<h1 class="mb-4"> <%= link_to(@article.user.username, user_path(@user)) %> </h1>
 <h1 class="mb-4">      <%= @article.title %> </h1>
 <p class="lead my-3">  <%= @article.body %>  </p>
 <strong> <%= image_tag @article.image_url if @article.image  %></strong>
@@ -32,7 +33,7 @@
 <h5> Комментарии: </h5>
 </p>
 <hr/>
-<% @article.comments.each do |comment| %>
+  <% @article.comments.each do |comment| %>
   <div class="alert-alert-light">
     <!--
     сделаем проверку есть ли у нас user_id в таблице comments и если есть, то выведем имя юзера
@@ -61,13 +62,13 @@
   <p>
     Автор <br>
     <%#= current_user.username %>
-    <%= form.text_field(:author, required: :true, minlength: 2, class: 'form-control', placeholder: "Автор") %>
+    <%#= form.text_field(:author, required: :true, minlength: 2, class: 'form-control', placeholder: "Автор") %>
     <%= form.text_field(:author, class: 'form-control', placeholder: "Автор / поле можно убрать") %>
   </p>
   <p>
 
     Комментарий <br>
-    <%= form.text_area(:body, required: :true, minlength: 1, class: 'form-control', placeholder: "Комментарий") %>
+    <%= form.text_area(:body, required: :true, minlength: 1, class: 'form-control', placeholder: "Комментарий (минимум 2 символа)") %>
   </p>
   <p>
     <%= form.submit('Добавить комментарий', {:class=>'btn btn-primary'}) %>
