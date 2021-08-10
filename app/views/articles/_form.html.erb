@@ -2,14 +2,17 @@
 Используется для подключения нужной нам разметки в разных представлениях. В данном случае эта форма для создания и
  редактирования поста подкючена в предствалених new и edit путем указания render 'form' -->
 
-<!-- Перехватываем ошибки при сохранении поста, и выводим из списком методом each -->
+<!-- Перехватываем ошибки при сохранении поста, и выводим из списком методом each
+ вынесли в shared/errors -->
 <div>
-  <% if @article.errors.any? %>
-    <% @article.errors.full_messages.each do |msg| %>
-      <div class="alert alert-danger"><%= msg %> </div>
-    <% end %>
-  <% end %>
+  <%# if @article.errors.any? %>
+    <%# @article.errors.full_messages.each do |msg| %>
+     <!-- <div class="alert alert-danger"><%#= msg %> </div> -->
+    <%# end %>
+  <%# end %>
 </div>
+
+<%= render 'shared/errors', object: @article %>
 
 <%= form_with(model: [@user, @article], local: true)  do |f| %>
    <p>

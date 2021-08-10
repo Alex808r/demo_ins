@@ -1,8 +1,11 @@
 class CommentsController < ApplicationController
 
+  before_action :set_article!
+
   def create
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.create(comment_params)
+    #@article = Article.find(params[:article_id]) вынесли в отдельный метод
+    #@comment = @article.comments.create(comment_params)
+    @comment = @article.comments.build(comment_params)
       if @comment.save
         flash[:success] = "Комментарий сохранен"
         redirect_to user_article_path(@article.user_id, @article) # тут был неправильный путь
@@ -14,8 +17,16 @@ class CommentsController < ApplicationController
       else
         flash[:danger] = "Ошибка сохранения комментария"
         redirect_to user_article_path(@article.user_id, @article)
+                                                                  #render 'articles/show' #не работает
       end
 
+  end
+
+  def destroy
+    @comment = @article.comments.find(params[:id])
+    @comment.destroy
+    flash[:danger] = "Комментарий удален"
+    redirect_to user_article_path(@article.user_id, @article)
   end
 
 
@@ -28,4 +39,9 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:author, :body, :user_id)
   end
+
+  def set_article!
+    @article = Article.find(params[:article_id])
+  end
+
 end

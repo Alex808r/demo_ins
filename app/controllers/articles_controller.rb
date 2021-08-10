@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   include Pundit              # Подключаем политику
   before_action :authenticate_user!  # Необходима регистрация
   before_action :load_user           # Загружаем юзера так как у нас вложенные маршурты и связанные модели
-  before_action :set_article, only: %i[show destroy edit update] # вынесли общий код в метод и определили загрузку
+  before_action :set_article!, only: %i[show destroy edit update] # вынесли общий код в метод и определили загрузку
                                                                   # метода для нужных action
 
   def index
@@ -59,6 +59,9 @@ class ArticlesController < ApplicationController
     # если оставлял себе, ошибки не возникало. Проблема была в маршрутах.
     # ActiveRecord::RecordNotFound in ArticlesController#show
     # Couldn't find Article with 'id'=11 [WHERE "articles"."user_id" = ?]
+    @comment = @article.comments.build
+    @comments = Comment.order created_at: :desc
+
   end
 
   def destroy
@@ -83,7 +86,7 @@ class ArticlesController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
-  def set_article
+  def set_article!
     @article = @user.articles.find(params[:id])
   end
 end

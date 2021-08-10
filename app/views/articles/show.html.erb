@@ -6,10 +6,10 @@
 <hr/>
 
 
-<p><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes' %></p>
+<p> <%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes' %></p>
 
 <!-- Чтобы отобразить тех, кто поставил лайки, можно использовать такую конструкцию -->
-<p > Пост понравился:
+<p> Пост понравился:
   <% @article.likes.each do |art| %>
     <%= art.user.username %>,
   <% end %>
@@ -25,15 +25,14 @@
 <% else %>
   <%= link_to 'Like', article_likes_path(@article), method: :post, class: 'btn btn-primary' %>
 <% end %>
-
-
 <hr/>
 
 <p>
 <h5> Комментарии: </h5>
 </p>
 <hr/>
-  <% @article.comments.each do |comment| %>
+  <% @comments.each do |comment| %>
+  <%# @article.comments.each do |comment| %>
   <div class="alert-alert-light">
     <!--
     сделаем проверку есть ли у нас user_id в таблице comments и если есть, то выведем имя юзера
@@ -45,8 +44,10 @@
     <%#= comment.user_id %>
      <p><strong> <%= comment.author %> </strong>
       <%= comment.body %>
-      <%#= link_to "Удалить комментарий", [comment.article, comment], method: :delete, data: {confirm:"Удалить?"}, :class => 'btn btn-link' %>
-    </p>
+        <p>
+      <%= link_to "Удалить комментарий", [@article, comment], method: :delete, data: {confirm:"Удалить?"}, :class => 'btn btn-danger' %>
+        </p>
+        </p>
     <hr/>
   </div>
 <% end %>
@@ -55,8 +56,9 @@
 
 
 <h5> Добавить комментарий </h5>
-
-<%= form_with model: [@article, @article.comments.build], local: true do |form| %>
+<%= render 'shared/errors', object: @comment %>
+            <!--было @article, @article.comments.build пока не довабили в action show article @comment -->
+<%= form_with model: [@article, @comment], local: true do |form| %>
 
   <p>
     Автор <br>
