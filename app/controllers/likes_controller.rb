@@ -35,6 +35,7 @@ class LikesController < ApplicationController
 
 
   private
+
   def find_article
     @article = Article.find(params[:article_id])
   end

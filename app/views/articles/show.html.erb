@@ -1,9 +1,11 @@
 <h1 class="mb-4">      <%#= @article.user.username %> </h1>
-<h1 class="mb-4"> <%= link_to(@article.user.username, user_path(@user)) %> </h1>
+<h1 class="mb-4">      <%= link_to(@article.user.username, user_path(@user)) %> </h1>
 <h1 class="mb-4">      <%= @article.title %> </h1>
 <p class="lead my-3">  <%= @article.body %>  </p>
-<strong> <%= image_tag @article.image_url if @article.image  %></strong>
-<hr/>
+
+<strong class="img-fluid img-thumbnail">               <%= image_tag @article.image_url, width: 350 if @article.image  %></strong>
+
+  <hr/>
 
 
 <p> <%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes' %></p>
@@ -55,8 +57,10 @@
 <hr/>
 
 
+<%=@comment.errors.full_messages %>
+<%= render 'shared/errors', object: @comment%>
 <h5> Добавить комментарий </h5>
-<%= render 'shared/errors', object: @comment %>
+
             <!--было @article, @article.comments.build пока не довабили в action show article @comment -->
 <%= form_with model: [@article, @comment], local: true do |form| %>
 
@@ -84,3 +88,4 @@
     <%= form.hidden_field :user_id, value: current_user.id %>
 
 <% end %>
+
