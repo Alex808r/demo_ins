@@ -60,7 +60,7 @@ class ArticlesController < ApplicationController
     # ActiveRecord::RecordNotFound in ArticlesController#show
     # Couldn't find Article with 'id'=11 [WHERE "articles"."user_id" = ?]
     @comment = @article.comments.build
-    @comments = Comment.order created_at: :desc
+    @comments = @article.comments.order created_at: :desc
 
   end
 
