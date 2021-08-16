@@ -2,13 +2,13 @@ require 'rails_helper'
 require 'capybara/rails'
 require 'database_cleaner/active_record'
 
+
 RSpec.describe ArticlesController, type: :controller do
 
-  let(:user) { create :user }
+  let(:user) { create(:user) }
   let(:params) { { user_id: user } }
 
   before { sign_in user }
-  # before { login_as(user) }
 
   describe '#index' do
     subject { get :index, params: params }
@@ -24,8 +24,8 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
   describe '#show' do
-
-    let(:params) { { user_id: user.id, id: article } }
+    let!(:article) { create(:article, user: user) }
+    let(:params) { { user_id: article.user.id, id: article } }
 
     subject { get :show, params: params }
 
@@ -39,21 +39,24 @@ RSpec.describe ArticlesController, type: :controller do
     it { is_expected.to render_template('show') }
   end
 
-  #context 'when user tries to see someone elses article' do
-  #let!(:article){create :article}
+  # context 'when user tries to see someone elses article' do
+  #   let!(:article) {create :article}
   #   it {expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
-  #end
+  #   #let(:params) { { user_id: nil, id: article } }
+  #   #it { expect { subject }.to raise_error ActionController::UrlGenerationError }
+  # end
 
-  describe '#new' do
+
+  describe "#new" do
     subject { get :new, params: params }
     it { is_expected.to render_template :new }
-    it 'assigns new post' do
+    it 'assigns new article' do
       subject
       expect(assigns(:article)).to be_a_new Article
     end
   end
 
-  describe '#create' do
+  describe "#create" do
     let!(:params) { { article: attributes_for(:article), user_id: user.id } }
     subject { article :create, params: params }
 

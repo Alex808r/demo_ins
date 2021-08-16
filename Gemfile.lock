@@ -132,7 +132,9 @@ GEM
       railties (>= 5.0.0)
     faker (2.11.0)
       i18n (>= 1.6, < 2)
+    ffaker (2.18.0)
     ffi (1.15.3)
+    ffi (1.15.3-x64-mingw32)
     formatador (0.3.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -179,6 +181,8 @@ GEM
     msgpack (1.4.2)
     nenv (0.3.0)
     nio4r (2.5.7)
+    nokogiri (1.11.7-x64-mingw32)
+      racc (~> 1.4)
     nokogiri (1.11.7-x86_64-linux)
       racc (~> 1.4)
     notiffany (0.1.3)
@@ -186,6 +190,7 @@ GEM
       shellany (~> 0.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
+    pg (1.2.3-x64-mingw32)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -265,6 +270,8 @@ GEM
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
+    sassc (2.4.0-x64-mingw32)
+      ffi (~> 1.9)
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
       sassc (>= 2.0)
@@ -322,6 +329,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  x64-mingw32
   x86_64-linux
 
 DEPENDENCIES
@@ -338,6 +346,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker (= 2.11.0)
+  ffaker
   guard (= 2.16.2)
   guard-minitest (= 2.4.6)
   image_processing (= 1.9.3)

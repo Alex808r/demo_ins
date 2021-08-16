@@ -90,6 +90,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'database_cleaner-active_record'
   gem 'shoulda-matchers', '4.0.0.rc1', require: false
+
+  gem 'ffaker'
 end
 
 group :development do

@@ -7,19 +7,19 @@ class ApplicationController < ActionController::Base
     user_articles_path(user)
   end
 
-  #rescue_from ActiveRecord::RecordNotFound, with: :notfound # отсылаем в метод notfound, а он рендерит страницу из директории
+  # rescue_from ActiveRecord::RecordNotFound, with: :notfound отсылаем в метод notfound, а он рендерит страницу из директории
   # паблик, чтобы скрыть от пользователя код в контроллере на котором возникает ошибка.
   # справоцировать ошибку можно путем обращения к несуществующему посту по id
   # обычно это убирают app/controllers/concerns
 
-  include ErrorHandling #перенесли и подключаем его
+  #include ErrorHandling # перенесли и подключаем его
 
   private
 
-  #def notfound(exception)
+  # def notfound(exception)
   #  logger.warn exception # запишем в логи эту ошибку
   #  render file: 'public/404.html', status: :not_found, layout: false
-  #end
+  # end
 
   def configure_permitted_parameters
     # devise_parameter_sanitizer.for(:sign_up) << :username
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def hello # использовалось для стартовой страницы
-     render html: "Hello, this is demo Instagram"
+    render html: "Hello, this is demo Instagram"
   end
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized

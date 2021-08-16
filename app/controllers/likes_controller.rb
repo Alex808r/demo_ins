@@ -29,12 +29,12 @@ class LikesController < ApplicationController
       #redirect_to article_path(@article)
   end
 
+
+  private
+
   def find_like
     @like = @article.likes.find(params[:id])
   end
-
-
-  private
 
   def find_article
     @article = Article.find(params[:article_id])

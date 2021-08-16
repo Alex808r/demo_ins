@@ -9,15 +9,18 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
-#
+
 FactoryBot.define do
 
   factory :article do
-    sequence(:title){ |n| "Title #{n}" }
-    sequence(:body) { |n| "Body #{n}"  }
     association(:user)
-    image {Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/test_file.png'),'image/jpeg')}
 
+    title {FFaker::CheesyLingo.word }
+    body {FFaker::Lorem.sentence}
+    #sequence(:title){ |n| "Title #{n}" }
+    #sequence(:body) { |n| "Body #{n}"  }
+
+    image {Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/test_file.png'),'image/jpeg')}
 
     trait(:with_invalid_image) do
       image { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/test_file.txt')) }

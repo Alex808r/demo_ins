@@ -18,10 +18,16 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_username              (username) UNIQUE
 #
+#
+#
+require 'ffaker'
+
 FactoryBot.define do
   factory :user do
-    sequence(:email){|n| "user#{n}@test.com"}
-    sequence(:username){|n| "User #{n}"}
+    email {FFaker::Internet.email }
+    username {FFaker::Name.pronouns} # создаем имя при помощи FFaker
+    #sequence(:email){|n| "user#{n}@test.com"} #создаем уникальные eмайлы в цикле
+    #sequence(:username){|n| "User #{n}"}
     password {'123456'}
     password_confirmation {'123456'}
   end
