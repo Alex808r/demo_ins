@@ -41,12 +41,13 @@ class ArticlesController < ApplicationController
       # Rails из redirect_to @user  автоматически делает вывод о том, что необходимо перенаправить на user_url(@user).
     else
       flash[:danger] = 'Ошибка сохранения поста.'
+      #flash[:danger] = @article.errors.full_messages
       render "new" # - это значит нужно отрендерить еще раз представление "new.html.erb"
       # это произойдет если не прошла валидация. можно также написать render action: 'new'
       # если в методе "create" мы бы не написали render "new", то нам бы вернулось представление "create.html.erb",
       # но у нас нет такого представления и поэтому мы просто возвращаем action "new" который подтянет представление
       # "new.html.erb"
-      #
+
       # Использовать "redirect_to" в данном случае нельзя, потому, что тогда потеряется переменная "@article" из метода
       # "create" так как "redirect_to" происходит на стороне браузера, а не на стороне сервера.
       # Когда делаем render "new" переменная не теряется.
@@ -61,7 +62,6 @@ class ArticlesController < ApplicationController
     # Couldn't find Article with 'id'=11 [WHERE "articles"."user_id" = ?]
     @comment  = @article.comments.build
     @comments = @article.comments.order created_at: :desc
-
   end
 
   def destroy
