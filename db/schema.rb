@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2021_08_06_191920) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "follows", "users", column: "following_id"

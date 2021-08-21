@@ -10,6 +10,10 @@
 #  updated_at :datetime         not null
 #  user_id    :integer
 #
+# Foreign Keys
+#
+#  user_id  (user_id => users.id)
+#
 class Article < ApplicationRecord
   include ImageUploader::Attachment(:image) # подлючаем загрузку изображений
 
