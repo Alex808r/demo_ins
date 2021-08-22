@@ -8,7 +8,7 @@
           <section class="card-text">
             <h3><%= article.user.username %> </h3>
             <h4><%= article.title %></h4>
-            <p class="my-2"> <%= article.body %></p>
+            <p class="my-2"> <%=truncate strip_tags(article.body), length: 15, omission: '...(continued' %></p>
             <strong class="img-fluid img-thumbnail"> <%= image_tag article.image_url, width: 350 if article.image %> </strong>
             <p><%= article.likes.count %> <%= (article.likes.count) == 1 ? 'Like' : 'Likes'%></p>
             <%#= link_to "Открыть пост / маршрут не настроен", "#" , class: 'btn btn-primary'  %>
