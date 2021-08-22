@@ -7,7 +7,9 @@ class ArticlesController < ApplicationController
 
   def index
     # @articles = Article.all  # Все посты
-    @articles = @user.articles # Посты только пользователя
+    #@articles = @user.articles # Посты только пользователя
+
+    @articles = @user.articles.order(created_at: :desc).page(params[:page]).per_page(2)
   end
 
   def new
