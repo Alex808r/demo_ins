@@ -24,7 +24,8 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:params) { { user_id: article.user.id, id: article } }
+    # let(:params) { { user_id: article.user.id, id: article } }
+    let(:params) { { user_id: user, id: article } }
     subject { get :show, params: params }
 
     it 'assigns @article' do
@@ -88,16 +89,49 @@ RSpec.describe ArticlesController, type: :controller do
   end
   
   describe 'PATCH #update' do
-    let(:params){ { user_id: article.user, id: article, article: attributes_for(:article) } }
-    subject { patch :update, params: params }
-
-    it 'assigns @article' do
-      subject
-      expect(assigns(:article)).to eq(article)
+    context 'with valid attributes' do
+      let(:params){ { user_id: article.user, id: article, article: attributes_for(:article) } }
+      subject { patch :update, params: params }
+  
+      it 'assigns @article' do
+        subject
+        expect(assigns(:article)).to eq(article)
+      end
+      
+      it { is_expected.to redirect_to user_articles_path(assigns(:user), assigns(:article)) }
     end
 
-    it { is_expected.to redirect_to user_articles_path(assigns(:user), assigns(:article)) }
-  end
+    context 'with invalid attributes' do
+      let(:params){ { user_id: article.user, id: article, article: attributes_for(:article, :with_invalid_image) } }
+      subject { patch :update, params: params }
 
+      it 'assigns @article' do
+        subject
+        article.reload
+        expect(article.title).to eq article.title
+        expect(article.body).to eq article.body
+      end
+
+      it { is_expected.to render_template :edit }
+    end
+  end
+  
+  describe 'DELETE #destroy' do
+    let!(:article) { create(:article, user: user ) }
+    let(:params){ { id: article, user_id: user } }
+    subject { delete :destroy, params: params }
+    # subject { process :destroy, method: :delete, params: params }
+
+    it 'delete the question' do
+      # expect { delete :destroy, params: { id: article, user_id: user } }.to change(Article, :count).by(-1)
+      # expect { subject }.to change(Article, :count).by(-1)
+      expect { subject }.to change { Article.count }.by(-1)
+    end
+
+    it 'redirect to index' do
+      subject
+      expect(response).to redirect_to action: :index
+    end
+  end
 end
 DatabaseCleaner.clean
