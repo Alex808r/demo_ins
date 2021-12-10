@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   # справоцировать ошибку можно путем обращения к несуществующему посту по id
   # обычно это убирают app/controllers/concerns
 
-  include ErrorHandling # перенесли и подключаем его
+  #include ErrorHandling # перенесли и подключаем его
 
   private
 
