@@ -24,4 +24,8 @@ FactoryBot.define do
     sequence(:body) { |n| "Comment #{n}"  }
     association(:article)
   end
+
+  trait(:invalid) do
+    body { nil }
+  end
 end
